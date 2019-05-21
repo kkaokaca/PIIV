@@ -1,0 +1,19 @@
+#main-header {
+    margin-bottom: 30px;
+}
+
+.category-item {
+    margin-bottom: 15px;
+}
+
+.category-item .card-body {
+    min-height: 120px;
+}
+
+.social-icons i {
+    font-size: 24px;
+    padding: 3px;
+    display: inline-block;
+    margin: 2px 3px;
+    color: #dc0004;
+}

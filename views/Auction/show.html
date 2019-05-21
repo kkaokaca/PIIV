@@ -1,0 +1,18 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+
+<button onclick="addBookmark({{ auction.auction_id }});">Add to bookmarks</button>
+
+<h2>{{ auction.title|escape }}</h2>
+<p>
+    {{ auction.description|escape }}
+</p>
+<p>
+    Pocinje: {{ auction.starts_at|date('j. n. Y.') }}<br>
+    Zavrsava se: {{ auction.ends_at|date('j. n. Y.') }}<br>
+</p>
+<p>
+    Trenutna cena: {{ lastPrice }} din.
+</p>
+{% endblock %}

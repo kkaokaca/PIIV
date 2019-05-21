@@ -1,0 +1,20 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+<a href="{{ BASE }}user/categories/add">
+    Add a new category
+</a>
+
+<ul>
+    {% for category in categories %}
+    <li>
+        <a href="{{ BASE }}user/categories/edit/{{ category.category_id }}">
+            {{ category.name|escape }}
+        </a>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block naslov %}
+Spisak kategorija
+{% endblock %}

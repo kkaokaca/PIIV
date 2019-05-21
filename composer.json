@@ -1,0 +1,12 @@
+{
+    "name": "singidunum/piivt20182019",
+    "type": "project",
+    "require": {
+        "twig/twig": "^2.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\" : "./"
+        }
+    }
+}

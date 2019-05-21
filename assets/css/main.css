@@ -1,0 +1,142 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 1100px;
+    margin: 0px auto;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+
+.site-header {
+    display: grid;
+    grid-template-areas: "banner social"
+                         "banner search"
+                         "menu   menu";
+}
+
+ul {
+    padding-left: 30px;
+}
+
+.banner { grid-area: banner; }
+.social-links { grid-area: social; text-align: right; }
+.search-box { grid-area: search; }
+.main-menu { grid-area: menu; }
+
+.search-box form {
+    display: flex;
+    border-right: none;
+}
+
+.search-box form input {
+    border: 1px solid #000;
+    border-right: none;
+    padding: 3px 5px;
+    font-size: 12px;
+    flex-grow: 1;
+}
+
+.search-box form button {
+    border: 1px solid #000;
+    background: none;
+    padding: 3px 5px;
+    border-left: none;
+}
+
+.search-box form button img {
+    height: 16px;
+}
+
+.main-menu > ul {
+    list-style: none;
+    display: flex;
+}
+
+.main-menu > ul > li {
+    flex-grow: 1;
+}
+
+.main-menu > ul > li > a {
+    display: block;
+    text-align: center;
+    padding: 5px 0px;
+    text-decoration: none;
+    color: #dc0404;
+}
+
+.main-menu > ul > li > a:hover {
+    background: #dc0404;
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.category-list {
+    list-style: none;
+    display: block;
+}
+
+.category-item {
+    display: inline-block;
+    width: 33%;
+    box-sizing: border-box;
+}
+
+.category-item a {
+    display: block;
+    padding: 20px 50px;
+    margin: 1%;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    background: #fdfdfd;
+    border: 1px solid #000;
+    color: #dc0404;
+}
+
+.category-item a:hover {
+    background: #f3f3f3;
+    border: 1px solid #dc0004;
+    color: #000;
+}
+
+.auction-list {
+    list-style: none;
+    margin: 10px;
+}
+
+.auction-list-item {
+    padding-bottom: 10px;
+}
+
+.auction-list-item a {
+    color: #dc0004;
+    text-decoration: none;
+    display: block;
+    padding: 10px 0px;
+    border-bottom: 1px solid #999999;
+}
+
+.auction-list-item a:hover {
+    background-color: #f3f3f3;
+    color: black;
+}
+
+#bookmarks {
+    position: fixed;
+    top: 50px;
+    right: 0px;
+    border: 1px solid #dc0004;
+    background: #ffffff;
+    padding: 10px;
+}
+
+form {
+    margin: 3px;
+    padding: 2px;
+    border: 1px solid #999999;
+}

@@ -1,0 +1,23 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+<div class="row">
+    {% for category in categories %}
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+        <div class="card category-item">
+            <div class="card-body">
+                <a href="{{ BASE }}category/{{ category.category_id }}" class="card-title">
+                    {{ category.name|escape }}
+                </a>
+
+                <p class="card-text">Broj aukcija u kategoriji je: NN</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block naslov %}
+Spisak kategorija
+{% endblock %}
