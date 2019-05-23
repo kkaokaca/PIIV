@@ -11,7 +11,7 @@
  Target Server Version : 100121
  File Encoding         : 65001
 
- Date: 07/05/2019 13:07:11
+ Date: 23/05/2019 11:03:22
 */
 
 SET NAMES utf8mb4;
@@ -45,11 +45,11 @@ CREATE TABLE `auction`  (
 -- ----------------------------
 -- Records of auction
 -- ----------------------------
-INSERT INTO `auction` VALUES (1, '2018-02-20 11:37:00', 'An oil painting of a snow covered mountain', 'An oil painting of a mountain covered in snow.', 170.00, '2018-02-20 11:37:00', '2019-03-20 11:37:00', 1, 3, 1, '1.jpg');
-INSERT INTO `auction` VALUES (2, '2018-02-20 11:37:00', 'Painting 1', 'Opis ove slike ide u ovo polje', 120.00, '2018-02-20 11:37:00', '2019-03-29 11:37:00', 1, 3, 1, '2.jpg');
-INSERT INTO `auction` VALUES (3, '2018-02-20 11:37:00', 'Painting #2', 'Neki drugi opis o slici broj dva.', 230.00, '2018-02-20 11:37:00', '2019-03-26 11:37:00', 1, 3, 2, '3.jpg');
-INSERT INTO `auction` VALUES (4, '2018-04-24 18:34:22', 'Naslov aucije 10a', 'Ovo je opis aukcije...b', 200.88, '2018-06-01 10:00:00', '2019-06-26 22:00:00', 1, 5, 3, '4.jpg');
-INSERT INTO `auction` VALUES (5, '2018-06-04 13:53:49', 'Najnovija aukcija!', 'Neki opis...', 200.77, '2018-06-03 13:02:00', '2019-06-30 04:04:00', 1, 4, 3, '5.jpg');
+INSERT INTO `auction` VALUES (1, '2018-02-20 11:37:00', 'An oil painting of a snow covered mountain', 'An oil painting of a mountain covered in snow.', 170.00, '2018-02-20 11:37:00', '2019-06-20 11:37:00', 1, 3, 1, '1.jpg');
+INSERT INTO `auction` VALUES (2, '2018-02-20 11:37:00', 'Painting 1', 'Opis ove slike ide u ovo polje', 120.00, '2018-02-20 11:37:00', '2019-06-29 11:37:00', 1, 3, 1, '2.jpg');
+INSERT INTO `auction` VALUES (3, '2018-02-20 11:37:00', 'Painting #2', 'Neki drugi opis o slici broj dva.', 230.00, '2018-02-20 11:37:00', '2019-06-22 10:27:57', 1, 3, 2, '3.jpg');
+INSERT INTO `auction` VALUES (4, '2018-04-24 18:34:22', 'Lot grckih novcica', 'Ovo je opis aukcije...b', 200.88, '2018-06-01 10:00:00', '2019-06-26 22:00:00', 1, 2, 3, '4.jpg');
+INSERT INTO `auction` VALUES (5, '2018-06-04 13:53:49', 'Lot rimskih novcica', 'Neki opis...', 200.77, '2018-06-03 13:02:00', '2019-06-30 04:04:00', 1, 2, 3, '5.jpg');
 
 -- ----------------------------
 -- Table structure for auction_view
@@ -153,7 +153,7 @@ CREATE TABLE `category`  (
   `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`category_id`) USING BTREE,
   UNIQUE INDEX `uq_category_name`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of category
@@ -162,6 +162,7 @@ INSERT INTO `category` VALUES (1, 'Antiques');
 INSERT INTO `category` VALUES (3, 'Art');
 INSERT INTO `category` VALUES (9, 'Fatal error');
 INSERT INTO `category` VALUES (7, 'Nova kategorija');
+INSERT INTO `category` VALUES (10, 'Nova kategorija izmenjena kroz CMS');
 INSERT INTO `category` VALUES (2, 'Numismatics');
 INSERT INTO `category` VALUES (6, 'Ovo je test kategorija');
 INSERT INTO `category` VALUES (8, 'Proba proba');
@@ -210,7 +211,7 @@ CREATE TABLE `user`  (
   UNIQUE INDEX `uq_user_username`(`username`) USING BTREE,
   UNIQUE INDEX `uq_user_email`(`email`) USING BTREE,
   INDEX `idx_user_is_active`(`is_active`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of user
@@ -220,5 +221,6 @@ INSERT INTO `user` VALUES (2, '2018-02-20 11:37:20', 'user_two', '$2y$10$zU.0/Fw
 INSERT INTO `user` VALUES (3, '2018-05-06 16:54:55', 'user_3', '$2y$10$TZGaANU1NnGLn7wOlA5XOetqDPvFTpHOfaqBmfI69FHEEhUmWyqOi', 'user@some-site.rs', 'Pera', 'Peric', 1);
 INSERT INTO `user` VALUES (4, '2019-04-09 15:23:07', 'test1', '$2y$10$TZGaANU1NnGLn7wOlA5XOetqDPvFTpHOfaqBmfI69FHEEhUmWyqOi', 'test@test.rs', 'Korisnik', 'Korisnic', 1);
 INSERT INTO `user` VALUES (5, '2019-04-25 10:38:21', 'user_1', '$2y$10$w5nRxqp279ipo5QygCeuu.0kfNwJqY/MuvuHv6UONiZV9OF5gA5sS', 'pperic@test.com', 'Pera', 'Peric', 1);
+INSERT INTO `user` VALUES (6, '2019-05-07 13:09:01', 'user_2', '$2y$10$FEa3b2AmPI4UZAYYzPJuyuAjf8apopq0s8YLpGs6vQQXV9QhHjeHy', 'user2@test.com', 'User', 'Test', 1);
 
 SET FOREIGN_KEY_CHECKS = 1;
