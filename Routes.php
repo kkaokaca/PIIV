@@ -12,6 +12,7 @@
         Route::get('#^categories/?$#',                     'Main',         'home'),
         Route::get('|^category/([0-9]+)/?$|',              'Main',         'showCategoryAuctions'),
         Route::get('#^auction/([0-9]+)/?$#',               'Auction',      'show'),
+        Route::post('|^search/?$|',                        'Auction',      'postSearch'),
     
         Route::get('#^api/categories/?$#',                 'MainApi',      'categories'),
         Route::get('#^api/auctions/([0-9]+)/?$#',          'MainApi',      'auctions'),

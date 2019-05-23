@@ -69,4 +69,26 @@
 
             return true;
         }
+
+        public function getAllActiveBySearch($keyword) {
+            $sql = 'SELECT
+                        *
+                    FROM
+                        auction
+                    WHERE
+                        title LIKE ? AND
+                        starts_at <= NOW() AND
+                        ends_at >= NOW() AND
+                        is_active = 1;';
+            
+            $prep = $this->getDatabaseConnection()->getConnection()->prepare($sql);
+
+            $res = $prep->execute([ '%' . $keyword . '%' ]);
+
+            if ($res) {
+                return $prep->fetchAll(\PDO::FETCH_OBJ);
+            }
+
+            return [];
+        }
     }

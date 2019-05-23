@@ -29,4 +29,14 @@ class AuctionController extends Controller {
         $this->set('auction', $auction);
         $this->set('lastPrice', $price);
     }
+
+    public function postSearch() {
+        $keyword = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_STRING);
+
+        $am = new AuctionModel($this->getDatabaseConnection());
+
+        $auctions = $am->getAllActiveBySearch($keyword);
+
+        $this->set('auctions', $auctions);
+    }
 }

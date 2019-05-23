@@ -1,0 +1,21 @@
+{% extends "_global/index.html" %}
+
+{% block naslov %}
+Rezultati pretrage
+{% endblock %}
+
+{% block title %}
+Rezultati pretrage
+{% endblock %}
+
+{% block main %}
+<ul class="auction-list">
+    {% for auction in auctions %}
+    <li class="auction-list-item">
+        <a href="{{ BASE }}auction/{{ auction.auction_id }}">
+            {{ auction.title|escape }},
+            {{ auction.ends_at|date('j. n. Y. H.i') }}
+        </a>
+    {% endfor %}
+</ul>
+{% endblock %}
