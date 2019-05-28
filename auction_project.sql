@@ -11,7 +11,7 @@
  Target Server Version : 100121
  File Encoding         : 65001
 
- Date: 23/05/2019 11:03:22
+ Date: 28/05/2019 13:21:51
 */
 
 SET NAMES utf8mb4;
@@ -45,11 +45,11 @@ CREATE TABLE `auction`  (
 -- ----------------------------
 -- Records of auction
 -- ----------------------------
-INSERT INTO `auction` VALUES (1, '2018-02-20 11:37:00', 'An oil painting of a snow covered mountain', 'An oil painting of a mountain covered in snow.', 170.00, '2018-02-20 11:37:00', '2019-06-20 11:37:00', 1, 3, 1, '1.jpg');
-INSERT INTO `auction` VALUES (2, '2018-02-20 11:37:00', 'Painting 1', 'Opis ove slike ide u ovo polje', 120.00, '2018-02-20 11:37:00', '2019-06-29 11:37:00', 1, 3, 1, '2.jpg');
-INSERT INTO `auction` VALUES (3, '2018-02-20 11:37:00', 'Painting #2', 'Neki drugi opis o slici broj dva.', 230.00, '2018-02-20 11:37:00', '2019-06-22 10:27:57', 1, 3, 2, '3.jpg');
-INSERT INTO `auction` VALUES (4, '2018-04-24 18:34:22', 'Lot grckih novcica', 'Ovo je opis aukcije...b', 200.88, '2018-06-01 10:00:00', '2019-06-26 22:00:00', 1, 2, 3, '4.jpg');
-INSERT INTO `auction` VALUES (5, '2018-06-04 13:53:49', 'Lot rimskih novcica', 'Neki opis...', 200.77, '2018-06-03 13:02:00', '2019-06-30 04:04:00', 1, 2, 3, '5.jpg');
+INSERT INTO `auction` VALUES (1, '2018-02-20 11:37:00', 'An oil painting of a snow covered mountain', 'An oil painting of a mountain covered in snow with cras in risus vel lorem mattis mollis in volutpat justo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.', 170.00, '2018-02-20 11:37:00', '2019-06-20 11:37:00', 1, 3, 1, '1.jpg');
+INSERT INTO `auction` VALUES (2, '2018-02-20 11:37:00', 'Painting 1', 'Opis ove slike je lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus hendrerit mattis nisl semper vulputate. Praesent magna ipsum, tincidunt quis tincidunt id, fringilla ut eros. Ut felis velit, semper id facilisis sit amet, accumsan eu erat. Vivamus quis suscipit arcu. Maecenas lacinia mauris ut risus vulputate maximus.', 120.00, '2018-02-20 11:37:00', '2019-06-29 11:37:00', 1, 3, 1, '2.jpg');
+INSERT INTO `auction` VALUES (3, '2018-02-20 11:37:00', 'Painting #2', 'Neki drugi opis o slici koji pellentesque a velit magna. Duis a porttitor velit. Nulla porta luctus egestas. Aliquam ut vestibulum erat. Maecenas sit amet justo sit amet nunc eleifend finibus.', 230.00, '2018-02-20 11:37:00', '2019-06-22 10:27:57', 1, 3, 2, '3.jpg');
+INSERT INTO `auction` VALUES (4, '2018-04-24 18:34:22', 'Lot grckih novcica', 'Novcici na prodaju su integer dignissim nibh vel mi convallis commodo. Aliquam erat volutpat. Ut laoreet diam leo, sit amet suscipit enim viverra rutrum. Mauris non nunc at ex placerat egestas luctus a nisl. Pellentesque viverra massa mi, eget ornare tortor rhoncus vitae.', 200.88, '2018-06-01 10:00:00', '2019-06-26 22:00:00', 1, 2, 3, '4.jpg');
+INSERT INTO `auction` VALUES (5, '2018-06-04 13:53:49', 'Lot rimskih novcica', 'Na prodaju su grcki novcici sa duis quis eros velit. Curabitur in arcu ante. In varius, nisl eu imperdiet porttitor, erat tellus vulputate metus, quis porta ligula massa vitae justo. Sed non est dignissim, pulvinar ipsum at, semper nisl.', 200.77, '2018-06-03 13:02:00', '2019-06-30 04:04:00', 1, 2, 3, '5.jpg');
 
 -- ----------------------------
 -- Table structure for auction_view
