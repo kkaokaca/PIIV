@@ -26,6 +26,11 @@
         Route::get('#^user/categories/edit/([0-9]+)/?$#',  'UserCategoryManagement', 'getEdit'),
         Route::post('#^user/categories/edit/([0-9]+)/?$#', 'UserCategoryManagement', 'postEdit'),
 
+        Route::get('#^user/auctions/add/?$#',              'UserAuctionManagement', 'getAdd'),
+        Route::post('#^user/auctions/add/?$#',             'UserAuctionManagement', 'postAdd'),
+        Route::get('#^user/auctions/edit/([0-9]+)/?$#',    'UserAuctionManagement', 'getEdit'),
+        Route::post('#^user/auctions/edit/([0-9]+)/?$#',   'UserAuctionManagement', 'postEdit'),
+
         # Fallback
         Route::get('#^.*$#', 'Main', 'home')
     ];
