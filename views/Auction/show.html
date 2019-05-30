@@ -2,17 +2,46 @@
 
 {% block main %}
 
-<button onclick="addBookmark({{ auction.auction_id }});">Add to bookmarks</button>
+<p>
+    <button onclick="addBookmark({{ auction.auction_id }});">Add to bookmarks</button>
+</p>
 
-<h2>{{ auction.title|escape }}</h2>
-<p>
-    {{ auction.description|escape }}
-</p>
-<p>
-    Pocinje: {{ auction.starts_at|date('j. n. Y.') }}<br>
-    Zavrsava se: {{ auction.ends_at|date('j. n. Y.') }}<br>
-</p>
-<p>
-    Trenutna cena: {{ lastPrice }} din.
-</p>
+<div class="row">
+    <div class="col-12 col-lg-3">
+        <img src="{{ BASE }}assets/uploads/{{ auction.image_path }}"
+             alt="Slika aukcije - {{ auction.title }}"
+             class="w-100">
+    </div>
+
+    <div class="col-12 col-lg-9">
+        <h2>{{ auction.title|escape }}</h2>
+
+        <p>
+            {{ auction.description|escape }}
+        </p>
+
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                Pocinje: <b>{{ auction.starts_at|date('j. n. Y.') }}</b><br>
+                Zavrsava se: <b>{{ auction.ends_at|date('j. n. Y.') }}</b><br>
+                Trenutna cena: <strong>{{ lastPrice }} din</strong>.
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="form-group">
+                    <p>Unesite iznos licitirane cene:</p>
+                    <div class="input-group">
+                        <input type="number" id="iznos" class="form-control"
+                               value="{{ lastPrice + 50 }}"
+                               min="{{ lastPrice + 50 }}"
+                               step="1">
+                        <button type="button" class="input-group-append">
+                            Licitiraj
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
