@@ -73,6 +73,11 @@
             $brojStr = strval(floatval($value));
 
             $deloviBroja = explode('.', $brojStr);
+
+            if (!isset($deloviBroja[1])) {
+                return true;
+            }
+
             $decimalniDeo = $deloviBroja[1];
 
             if (strlen($decimalniDeo) > $this->maxDecimalDigits) {

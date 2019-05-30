@@ -13,4 +13,10 @@
         const FINGERPRINT_PROVIDER_CLASS = '\\App\\Core\\Fingerprint\\BasicFingerprintProvider';
 
         const UPLOAD_DIR = 'assets/uploads/';
+
+        const MAIL_HOST = 'smtp.office365.com';
+        const MAIL_PORT = '587';
+        const MAIL_PROTOCOL = 'tls';
+        const MAIL_USERNAME = 'milan.tair.08@singimail.rs';
+        const MAIL_PASSWORD = '**************************';
     }

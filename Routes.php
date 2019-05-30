@@ -19,7 +19,8 @@
         Route::get('#^api/bookmarks/?$#',                  'BookmarkApi',  'getBookmarks'),
         Route::get('#^api/bookmarks/add/([0-9]+)/?$#',     'BookmarkApi',  'addBookmark'),
         Route::get('#^api/bookmarks/clear/?$#',            'BookmarkApi',  'clear'),
-    
+        Route::post('#^api/auction/bid/?$#',               'UserAuctionApi', 'postBid'),
+
         Route::get('#^user/categories/?$#',                'UserCategoryManagement', 'categories'),
         Route::get('#^user/categories/add/?$#',            'UserCategoryManagement', 'getAdd'),
         Route::post('#^user/categories/add/?$#',           'UserCategoryManagement', 'postAdd'),
