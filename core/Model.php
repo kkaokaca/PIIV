@@ -98,6 +98,29 @@
             return $items;
         }
 
+        # Proba: f-ja koja pravi upit za veznu tabelu
+        final public function getAllByFieldNameMtoN(string $fieldName, $value): array {
+            if(!$this->isFieldNameValid($fieldName)){
+                throw new Exception('Ime polja nije validno. Polje: '. $fieldName);
+            }
+            $tableName = $this->getTableName();
+            if($tableName == 'recipe') {
+                $mToNTableName = 'category_' . $tableName;
+            }
+            if($tableName == 'category') {
+                $mToNTableName = $tableName . '_recipe';        
+            }
+            $sql = 'SELECT * FROM '. $mToNTableName .' WHERE '. $fieldName .' = ?;'; //ZA RELACIJE 1:N !!!
+            $db = $this->dbCon->getConnection(); //vraca PDO objekat, ako je konekcija vec napravljena koristi staru
+            $prep = $db->prepare($sql);
+            $res = $prep->execute([ $value ]); //izvrsava se za BILO KOJU vrednost, ne mora samo za broj kao sto je za id-jeve
+            $items = []; //vise redova/objekata - (generalno ime za podatke koji se izvlace)
+            if($res) {
+                $items = $prep->fetchAll(\PDO::FETCH_OBJ);
+            }
+            return $items;
+        }
+
         public function getByFieldName(string $fieldName, $value) {
             if (!$this->isFieldNameValid($fieldName)) {
                 throw new \Exception('Ime polja nije ispravno!');
@@ -145,13 +168,15 @@
         final public function add(array $data) {
             $supportedFields = $this->getFields();
             $requestedFields = array_keys($data);
-
+            
             foreach ($requestedFields as $requestedField) {
                 if (!$this->isFieldNameSupported($requestedField)) {
                     throw new \Exception('Field name ' . $requestedField . ' is not supported in this model.');
                 }
 
                 $requestedValue = $data[$requestedField];
+                
+                
 
                 if (!$supportedFields[$requestedField]->isEditable()) {
                     throw new \Exception('Field ' . $requestedField . ' is not editable.');
@@ -161,7 +186,6 @@
                     throw new \Exception('The value for the field ' . $requestedField . ' is not valid.');
                 }
             }
-
             $tableName = $this->getTableName();
 
             foreach ($requestedFields as &$requestedField) {
@@ -190,17 +214,7 @@
             return $pdo->lastInsertId();
         }
 
-        /**
-         * $auctionModel = new AuctionModel(....);
-         * $auctionModel->editById(11, [
-         *     'title'       => 'Novi naziv',
-         *     'ends_at'     => '2019-04-11 10:00:00',
-         *     'category_id' => 4
-         * ]);
-         *
-         * # UPDATE `auction` SET title = ?, ends_at = ?, category_id = ? WHERE auction_id = ?;
-         * # [ 'Novi naziv', '2019-04-11 10:00:00', 4, 11 ]
-         */
+     
         final public function editById($id, array $data) {
             $supportedFields = $this->getFields();
             $requestedFields = array_keys($data);

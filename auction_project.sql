@@ -11,7 +11,7 @@
  Target Server Version : 100121
  File Encoding         : 65001
 
- Date: 28/05/2019 13:21:51
+ Date: 06/06/2019 11:47:39
 */
 
 SET NAMES utf8mb4;
@@ -40,7 +40,7 @@ CREATE TABLE `auction`  (
   INDEX `fk_auction_user_id`(`user_id`) USING BTREE,
   CONSTRAINT `fk_auction_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `fk_auction_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of auction
@@ -48,8 +48,10 @@ CREATE TABLE `auction`  (
 INSERT INTO `auction` VALUES (1, '2018-02-20 11:37:00', 'An oil painting of a snow covered mountain', 'An oil painting of a mountain covered in snow with cras in risus vel lorem mattis mollis in volutpat justo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.', 170.00, '2018-02-20 11:37:00', '2019-06-20 11:37:00', 1, 3, 1, '1.jpg');
 INSERT INTO `auction` VALUES (2, '2018-02-20 11:37:00', 'Painting 1', 'Opis ove slike je lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus hendrerit mattis nisl semper vulputate. Praesent magna ipsum, tincidunt quis tincidunt id, fringilla ut eros. Ut felis velit, semper id facilisis sit amet, accumsan eu erat. Vivamus quis suscipit arcu. Maecenas lacinia mauris ut risus vulputate maximus.', 120.00, '2018-02-20 11:37:00', '2019-06-29 11:37:00', 1, 3, 1, '2.jpg');
 INSERT INTO `auction` VALUES (3, '2018-02-20 11:37:00', 'Painting #2', 'Neki drugi opis o slici koji pellentesque a velit magna. Duis a porttitor velit. Nulla porta luctus egestas. Aliquam ut vestibulum erat. Maecenas sit amet justo sit amet nunc eleifend finibus.', 230.00, '2018-02-20 11:37:00', '2019-06-22 10:27:57', 1, 3, 2, '3.jpg');
-INSERT INTO `auction` VALUES (4, '2018-04-24 18:34:22', 'Lot grckih novcica', 'Novcici na prodaju su integer dignissim nibh vel mi convallis commodo. Aliquam erat volutpat. Ut laoreet diam leo, sit amet suscipit enim viverra rutrum. Mauris non nunc at ex placerat egestas luctus a nisl. Pellentesque viverra massa mi, eget ornare tortor rhoncus vitae.', 200.88, '2018-06-01 10:00:00', '2019-06-26 22:00:00', 1, 2, 3, '4.jpg');
+INSERT INTO `auction` VALUES (4, '2018-04-24 18:34:22', 'Lot grckih novcica', 'Novcici na prodaju su integer dignissim nibh vel mi convallis commodo. Aliquam erat volutpat. Ut laoreet diam leo, sit amet suscipit enim viverra rutrum. Mauris non nunc at ex placerat egestas luctus a nisl. Pellentesque viverra massa mi, eget ornare tortor rhoncus vitae.', 200.88, '2019-06-09 10:00:00', '2019-06-26 22:00:00', 1, 2, 3, '4.jpg');
 INSERT INTO `auction` VALUES (5, '2018-06-04 13:53:49', 'Lot rimskih novcica', 'Na prodaju su grcki novcici sa duis quis eros velit. Curabitur in arcu ante. In varius, nisl eu imperdiet porttitor, erat tellus vulputate metus, quis porta ligula massa vitae justo. Sed non est dignissim, pulvinar ipsum at, semper nisl.', 200.77, '2018-06-03 13:02:00', '2019-06-30 04:04:00', 1, 2, 3, '5.jpg');
+INSERT INTO `auction` VALUES (6, '2019-05-28 15:24:53', 'Test', 'jedan', 800.00, '2019-05-05 02:03:00', '2019-06-14 16:04:00', 1, 5, 5, '6.jpg');
+INSERT INTO `auction` VALUES (7, '2019-05-28 15:41:56', 'Skulptura 122', 'z\\fgfdfhgdfghdf', 34.00, '2019-05-07 03:03:00', '2019-06-21 15:03:00', 1, 3, 5, '7.jpg');
 
 -- ----------------------------
 -- Table structure for auction_view
@@ -170,6 +172,26 @@ INSERT INTO `category` VALUES (5, 'Sculptures');
 INSERT INTO `category` VALUES (4, 'Some old things');
 
 -- ----------------------------
+-- Table structure for notification
+-- ----------------------------
+DROP TABLE IF EXISTS `notification`;
+CREATE TABLE `notification`  (
+  `notification_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `subject` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `content` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `is_sent` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  PRIMARY KEY (`notification_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of notification
+-- ----------------------------
+INSERT INTO `notification` VALUES (1, '2019-06-06 11:15:38', 'user@some-site.com', 'Nova licitacija', '<p>Na Vašu aukciju &quot;Painting 1&quot; je neko licitirao sa iznosom 500 RSD.</p>', 1);
+INSERT INTO `notification` VALUES (2, '2019-06-06 11:15:49', 'user@some-site.com', 'Nova licitacija', '<p>Na Vašu aukciju &quot;Painting 1&quot; je neko licitirao sa iznosom 550 RSD.</p>', 1);
+
+-- ----------------------------
 -- Table structure for offer
 -- ----------------------------
 DROP TABLE IF EXISTS `offer`;
@@ -184,7 +206,7 @@ CREATE TABLE `offer`  (
   INDEX `fk_offer_user_id`(`user_id`) USING BTREE,
   CONSTRAINT `fk_offer_auction_id` FOREIGN KEY (`auction_id`) REFERENCES `auction` (`auction_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `fk_offer_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of offer
@@ -193,6 +215,18 @@ INSERT INTO `offer` VALUES (1, '2018-03-13 20:25:41', 1, 2, 200.00);
 INSERT INTO `offer` VALUES (2, '2018-03-13 20:28:20', 1, 1, 210.00);
 INSERT INTO `offer` VALUES (3, '2018-03-13 20:28:25', 1, 2, 223.00);
 INSERT INTO `offer` VALUES (4, '2018-03-13 20:35:40', 2, 2, 300.00);
+INSERT INTO `offer` VALUES (5, '2019-05-30 10:44:50', 1, 5, 273.00);
+INSERT INTO `offer` VALUES (6, '2019-05-30 10:48:52', 1, 5, 323.00);
+INSERT INTO `offer` VALUES (7, '2019-05-30 10:50:08', 1, 5, 373.00);
+INSERT INTO `offer` VALUES (8, '2019-05-30 10:50:16', 1, 5, 423.00);
+INSERT INTO `offer` VALUES (9, '2019-05-30 11:09:37', 1, 5, 473.00);
+INSERT INTO `offer` VALUES (10, '2019-05-30 11:30:36', 3, 5, 280.00);
+INSERT INTO `offer` VALUES (11, '2019-05-30 11:32:56', 3, 5, 330.00);
+INSERT INTO `offer` VALUES (12, '2019-06-06 10:28:44', 6, 6, 1000.00);
+INSERT INTO `offer` VALUES (13, '2019-06-06 10:42:20', 6, 6, 1050.00);
+INSERT INTO `offer` VALUES (14, '2019-06-06 11:07:22', 2, 5, 400.00);
+INSERT INTO `offer` VALUES (15, '2019-06-06 11:15:38', 2, 5, 500.00);
+INSERT INTO `offer` VALUES (16, '2019-06-06 11:15:49', 2, 5, 550.00);
 
 -- ----------------------------
 -- Table structure for user
@@ -221,6 +255,52 @@ INSERT INTO `user` VALUES (2, '2018-02-20 11:37:20', 'user_two', '$2y$10$zU.0/Fw
 INSERT INTO `user` VALUES (3, '2018-05-06 16:54:55', 'user_3', '$2y$10$TZGaANU1NnGLn7wOlA5XOetqDPvFTpHOfaqBmfI69FHEEhUmWyqOi', 'user@some-site.rs', 'Pera', 'Peric', 1);
 INSERT INTO `user` VALUES (4, '2019-04-09 15:23:07', 'test1', '$2y$10$TZGaANU1NnGLn7wOlA5XOetqDPvFTpHOfaqBmfI69FHEEhUmWyqOi', 'test@test.rs', 'Korisnik', 'Korisnic', 1);
 INSERT INTO `user` VALUES (5, '2019-04-25 10:38:21', 'user_1', '$2y$10$w5nRxqp279ipo5QygCeuu.0kfNwJqY/MuvuHv6UONiZV9OF5gA5sS', 'pperic@test.com', 'Pera', 'Peric', 1);
-INSERT INTO `user` VALUES (6, '2019-05-07 13:09:01', 'user_2', '$2y$10$FEa3b2AmPI4UZAYYzPJuyuAjf8apopq0s8YLpGs6vQQXV9QhHjeHy', 'user2@test.com', 'User', 'Test', 1);
+INSERT INTO `user` VALUES (6, '2019-05-07 13:09:01', 'user_2', '$2y$10$w5nRxqp279ipo5QygCeuu.0kfNwJqY/MuvuHv6UONiZV9OF5gA5sS', 'user2@test.com', 'User', 'Test', 1);
+
+-- ----------------------------
+-- Triggers structure for table auction
+-- ----------------------------
+DROP TRIGGER IF EXISTS `trigger_auction_bu`;
+delimiter ;;
+CREATE TRIGGER `trigger_auction_bu` BEFORE UPDATE ON `auction` FOR EACH ROW BEGIN
+	IF (SELECT COUNT(*) FROM offer WHERE auction_id = OLD.auction_id) > 0 THEN
+		SIGNAL SQLSTATE '50001'
+		  SET MESSAGE_TEXT = 'Ne mozete menjati aukciju za koju postoje licitacije.';
+	END IF;
+
+	IF NEW.starts_at < NOW() THEN
+		SIGNAL SQLSTATE '50002'
+		  SET MESSAGE_TEXT = 'Nije moguce da pocetak aukcije bude u proslosti.';
+	END IF;
+
+	IF NEW.ends_at <= NEW.starts_at THEN
+		SIGNAL SQLSTATE '50003'
+		  SET MESSAGE_TEXT = 'Vreme kraja ne moze biti pre vremena pocetka.';
+	END IF;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Triggers structure for table offer
+-- ----------------------------
+DROP TRIGGER IF EXISTS `trigger_offer_bi`;
+delimiter ;;
+CREATE TRIGGER `trigger_offer_bi` BEFORE INSERT ON `offer` FOR EACH ROW BEGIN
+	DECLARE najvecaLicitiranaSuma DECIMAL(10, 2);
+
+	SET najvecaLicitiranaSuma = (
+		SELECT MAX(offer.price)
+		FROM offer
+		WHERE offer.auction_id = NEW.auction_id
+	);
+
+	IF najvecaLicitiranaSuma + 50 > NEW.price THEN
+		SIGNAL SQLSTATE '50004' SET MESSAGE_TEXT =
+		  'Licitirana suma mora biti veca barem za 50 RSD od prethodne.';
+	END IF;
+END
+;;
+delimiter ;
 
 SET FOREIGN_KEY_CHECKS = 1;

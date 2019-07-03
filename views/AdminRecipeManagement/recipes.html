@@ -1,0 +1,20 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+<a href="{{ BASE }}admin/recipes/add">
+    Dodaj novi recept
+</a>
+
+<ul>
+    {% for recipe in recipes %}
+    <li>
+        <a href="{{ BASE }}admin/recipes/edit/{{ recipe.recipe_id }}">
+            {{ recipe.title|escape }}
+        </a>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block naslov %}
+Spisak recepata
+{% endblock %}

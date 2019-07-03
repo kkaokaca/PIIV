@@ -1,4 +1,4 @@
-* {
+/* * {
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
@@ -66,11 +66,11 @@ ul {
     text-align: center;
     padding: 5px 0px;
     text-decoration: none;
-    color: #dc0404;
+    color: #7c5bd8;
 }
 
 .main-menu > ul > li > a:hover {
-    background: #dc0404;
+    background: #7c5bd8;
     color: #ffffff;
     text-decoration: underline;
 }
@@ -95,12 +95,12 @@ ul {
     text-decoration: none;
     background: #fdfdfd;
     border: 1px solid #000;
-    color: #dc0404;
+    color: #7c5bd8;
 }
 
 .category-item a:hover {
     background: #f3f3f3;
-    border: 1px solid #dc0004;
+    border: 1px solid #7c5bd8;
     color: #000;
 }
 
@@ -114,7 +114,7 @@ ul {
 }
 
 .auction-list-item a {
-    color: #dc0004;
+    color: #7c5bd8;
     text-decoration: none;
     display: block;
     padding: 10px 0px;
@@ -122,7 +122,7 @@ ul {
 }
 
 .auction-list-item a:hover {
-    background-color: #f3f3f3;
+    background-color: #f8dbdb;
     color: black;
 }
 
@@ -130,7 +130,7 @@ ul {
     position: fixed;
     top: 50px;
     right: 0px;
-    border: 1px solid #dc0004;
+    border: 1px solid #7c5bd8;
     background: #ffffff;
     padding: 10px;
 }
@@ -139,4 +139,4 @@ form {
     margin: 3px;
     padding: 2px;
     border: 1px solid #999999;
-}
+} */

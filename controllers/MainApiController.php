@@ -3,7 +3,7 @@ namespace App\Controllers;
 
 use App\Models\CategoryModel;
 use App\Core\ApiController;
-use App\Models\AuctionModel;
+use App\Models\RecipeModel;
 
 class MainApiController extends ApiController {
     public function categories() {
@@ -13,10 +13,10 @@ class MainApiController extends ApiController {
         sleep(1);
     }
 
-    public function auctions($categoryId) {
-        $am = new AuctionModel($this->getDatabaseConnection());
+    public function recipes($categoryId) {
+        $am = new RecipeModel($this->getDatabaseConnection());
         $items = $am->getAllByCategoryId($categoryId);
-        $this->set('auctions', $items);
+        $this->set('recipes', $items);
         sleep(1);
     }
 }

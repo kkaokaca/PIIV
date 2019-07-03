@@ -1,0 +1,24 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+    <div class="card">
+        <div class="card-header">
+            Opcije dostupne prijavljenim korisnicima
+        </div>
+        <div class="card-body">
+            <div class="card-text">
+                <a href="{{ BASE }}admin/recipes" class="btn btn-primary">
+                        Otvorite listu recepata
+                </a>
+                <a href="{{ BASE }}admin/categories" class="btn btn-primary">
+
+                    Otvorite listu kategorija
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block naslov %}
+Dashboard
+{% endblock %}

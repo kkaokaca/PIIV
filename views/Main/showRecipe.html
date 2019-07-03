@@ -1,0 +1,104 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+
+<p>
+    {% if SESSION.adminId != null and SESSION.adminId == recipe.admin_id %}
+        <a href="{{ BASE }}admin/recipes/edit/{{ recipe.recipe_id }}/" class="btn btn-danger btn-sm">
+            Izmeni recept
+        </a>
+    {% endif %}
+</p>
+
+<div class="row">
+    <div class="col-12 col-lg-3">
+        <img src="{{ BASE }}assets/uploads/{{ recipe.image_path }}"
+             alt="Slika recepta {{ recipe.title }}"
+             class="w-100">
+    </div>
+
+    <div class="col-12 col-lg-5">
+        <h2>{{ recipe.title|escape }}</h2>
+
+        <p>
+           {{ recipe.description|escape }}
+        </p>
+
+        <!-- <div class="row">
+            <div class="col-12 col-lg-8">
+                Pocinje: <b>{{ recipe.starts_at|date('j. n. Y.') }}</b><br>
+                Zavrsava se: <b>{{ recipe.ends_at|date('j. n. Y.') }}</b><br>
+                Trenutna cena: <strong id="last-price">{{ lastPrice }} din</strong>.
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="form-group">
+                    <p>Unesite iznos licitirane cene:</p>
+                    <div class="input-group">
+                        <input type="number" id="iznos" class="form-control"
+                               value="{{ lastPrice + 50 }}"
+                               min="{{ lastPrice + 50 }}"
+                               step="1">
+                        <button type="button" id="btn-licitiraj"
+                                class="input-group-append btn btn-primary" onclick="bid();">
+                            Licitiraj
+                        </button>
+                    </div>
+                </div>
+
+                <div id="poruka" class="alert d-none">
+
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <div class="col col-12 col-md-4 col-md-3"><ul class="list-group">
+            {% for i in ingredients %}
+            <li class="list-group-item">
+       
+            <a href="{{ BASE }}ingredient/{{ i.ingredient_id }}">{{i.ingredient_name}}</a>
+            {{i.amount}}
+            {{i.ingredient_unit}}
+        </li>
+        {% endfor %}
+    </ul>
+    </div>
+</div>
+
+<script>
+    function bid() {
+        let amount    = document.getElementById('iznos').value;
+        let recipeId = {{ recipe.recipe_id }};
+
+        let form = new FormData();
+        form.append('recipe_id', recipeId);
+        form.append('amount', amount);
+
+        document.getElementById('btn-licitiraj').setAttribute('disabled', true);
+
+        fetch(
+            '{{ BASE }}api/recipe/bid',
+            {
+                "credentials": "include",
+                "method": "post",
+                "body": form
+            }
+        )
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('poruka').innerText = data.message;
+
+            if (data.error < 0) {
+                document.getElementById('poruka').classList.add('alert-warning');
+            } else {
+                document.getElementById('poruka').classList.add('alert-primary');
+                document.getElementById('last-price').innerText = amount + '.00 din';
+            }
+
+            document.getElementById('poruka').classList.remove('d-none');
+
+            document.getElementById('btn-licitiraj').removeAttribute('disabled');
+        });
+    }
+</script>
+{% endblock %}

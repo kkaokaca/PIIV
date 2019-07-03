@@ -1,0 +1,23 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+<div class="row">
+    {% for recipe in recepies %}
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+        <div class="card recipe-item">
+            <div class="card-body">
+                <a href="{{ BASE }}recipe/{{ recipe.recipe_id }}" class="card-title">
+                    {{ recipe.title|escape }}
+                </a>
+
+                <p class="card-text">Klikom pristupate detaljnom sadržaju recepta</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block naslov %}
+Spisak kategorija
+{% endblock %}

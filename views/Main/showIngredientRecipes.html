@@ -1,0 +1,20 @@
+{% extends "_global/index.html" %}
+
+{% block naslov %}
+Recepti iz kategorije {{ category.name|escape }}
+{% endblock %}
+
+{% block title %}
+Kategorija "{{ category.name|escape }}"
+{% endblock %}
+
+{% block main %}
+<ul class="recipe-list">
+    {% for recipe in recipes %}
+    <li class="recipe-list-item">
+        <a href="{{ BASE }}recipe/{{ recipe.recipe_id }}">
+            {{ recipe.recipe_title|escape }}
+        </a>
+    {% endfor %}
+</ul>
+{% endblock %}

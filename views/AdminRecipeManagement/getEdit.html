@@ -1,0 +1,182 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <a href="{{ BASE }}admin/recipes">
+        Lista svih recepata
+    </a>
+
+    <div>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group col col-12 col-md-6">
+                <label for="title">Naslov recepta: </label>
+                <input class="form-control" type="text"
+                        value={{recipe.title}}
+                       required name="title" id="title" pattern=".*[^\s]{3,}.*">
+            </div>
+
+            <div class="form-group  col col-12 col-md-6">
+                <label for="description">Opis pripreme recepta: </label>
+                <textarea class="form-control" required
+                          name="description" id="description" pattern=".*[^\s]{3,}.*">{{recipe.description}}</textarea>
+            </div>
+            <div >
+
+
+            <div class="form-group  col col-12 col-md-6">
+                <label for="category_id">Odaberite kategoriju: </label>
+                <select id="category_id" name="category_id" class="form-control selectpicker" multiple data-live-search="true">
+                    {% for category in categories %}
+                        {% if category.category_id == auction.category_id %}
+                            <option value="{{ category.category_id }}" selected>
+                                {{ category.name }}
+                            </option>
+                        {% else %}
+                            <option value="{{ category.category_id }}">
+                                {{ category.name }}
+                            </option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group fieldGroup">
+                    <div class="input-group col col-12 col-md-7">
+                        <input type="text" name="name[]" class="form-control" placeholder="Unesite zeljeni sastojak"/>
+                        <input type="text" name="amount[]" class="form-control" placeholder="Unesite kolicinu"/>
+                        <input type="text" name="unit_measure[]" class="form-control" placeholder="Unesite jedinicu mere"/>
+                        <div class="input-group-addon"> 
+                            <a href="javascript:void(0)" class="btn btn-success addMore"><span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span> Add</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group fieldGroupCopy" style="display: none;">
+                        <div class="input-group col col-12 col-md-7">
+                                <input type="text" name="name[]" class="form-control" placeholder="Unesite zeljeni sastojak"/>
+                            <input type="text" name="amount[]" class="form-control" placeholder="Unesite kolicinu"/>
+                            <input type="text" name="unit_measure[]" class="form-control" placeholder="Unesite jedinicu mere"/>
+                        <div class="input-group-addon"> 
+                            <a href="javascript:void(0)" class="btn btn-danger remove"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span> Remove</a>
+                        </div>
+                    </div>
+                </div>
+
+            <div>
+                <input type="button" value="Dodaj sastojak" id="add">
+                <div id="container">&nbsp;</div>
+            </div>
+
+            <div class="form-group  col col-12 col-md-6">
+                <label for="image">Izaberite sliku </label>
+                <input class="form-control-file" type="file" required name="image" id="image">
+            </div>
+
+            <div class="form-group  col col-12 col-md-6">
+                <button type="submit" class="btn btn-block btn-primary">
+                    Dodaj recept
+                </button>
+            </div>
+        </form>
+    </div>
+    <script>
+        $(document).ready(function(){
+            //group add limit
+            var maxGroup = 10;
+            
+            //add more fields group
+            $(".addMore").click(function(){
+                if($('body').find('.fieldGroup').length < maxGroup){
+                    var fieldHTML = '<div class="form-group fieldGroup">'+$(".fieldGroupCopy").html()+'</div>';
+                    $('body').find('.fieldGroup:last').after(fieldHTML);
+                }else{
+                    alert('Maximum '+maxGroup+' groups are allowed.');
+                }
+            });
+            
+            //remove fields group
+            $("body").on("click",".remove",function(){ 
+                $(this).parents(".fieldGroup").remove();
+            });
+        });
+        window.addEventListener("load", function() {
+        document.getElementById("add").addEventListener("click", function() {
+            // Create a div
+            var cnt=0;
+            var div  = document.createElement("div");
+            var div1 = document.createElement("div");
+            var div2 = document.createElement("div");
+            div.setAttribute("class", "form-group");
+            div1.setAttribute("class", "form-group");
+            div2.setAttribute("class", "form-group");
+            // Create a file input
+            var ingredient = document.createElement("input");
+            ingredient.setAttribute("type", "text");
+            ingredient.setAttribute("name", "ingredient"); // You mayd want to change this
+            ingredient.setAttribute("placeholder", "Unesite ime sastojka"); // You may want to change this
+            ingredient.setAttribute("class", "form-control"); // You may want to change this
+
+            // Create a text input
+            var quantity= document.createElement("input");
+            quantity.setAttribute("type", "number");
+            quantity.setAttribute("name", "quantity");
+            quantity.setAttribute("placeholder", "Unesite neophodnu kolicinu"); // You may want to change this
+
+            quantity.setAttribute("class", "form-control"); // You may want to change this
+
+            // Create a text input
+            var unit_measure = document.createElement("select");
+            var empty = document.createElement("option");
+            empty.text = "Izaberite mernu jedinicu";
+            empty.setAttribute("value", "");
+            empty.setAttribute("disabled", true);
+            empty.setAttribute("selected", true);
+            var kilogram = document.createElement("option");
+            kilogram.text = "kilogram";
+            kilogram.setAttribute("value", "kilogram");
+            var gram = document.createElement("option");
+            gram.text = "gram";
+            gram.setAttribute("value", "gram");
+            var mililitar = document.createElement("option");
+            mililitar.text = "mililitar";
+            mililitar.setAttribute("value", "mililitar");
+            var komad = document.createElement("option");
+            komad.text = "komad";
+            komad.setAttribute("value", "komad");
+
+            unit_measure.setAttribute("name", "number");
+            unit_measure.setAttribute("class", "form-control");
+            unit_measure.options.add(empty); // You may want to change this
+            unit_measure.options.add(kilogram, "kilogram"); // You may want to change this
+            unit_measure.options.add(gram, "gram"); // You may want to change this
+            unit_measure.options.add(mililitar, "mililitar"); // You may want to change this
+            unit_measure.options.add(komad, "komad"); // You may want to change this
+            // unit_measure.options.add("gram", "gram"); // You may want to change this
+            // unit_measure.options.add("litar", "litar"); // You may want to change this
+            // unit_measure.options.add("mililitar", "mililitar"); // You may want to change this
+            // unit_measure.options.add("komad", "komad"); // You may want to change this
+ // you may want to change this
+
+            // add the file and text to the div
+            div.appendChild(ingredient);
+            div1.appendChild(quantity);
+            div2.appendChild(unit_measure);
+            document.getElementById("container").appendChild(div);
+            document.getElementById("container").appendChild(div1);
+            document.getElementById("container").appendChild(div2);
+            
+
+            //Append the div to the container div
+            
+        });
+        });
+    </script>
+{% endblock %}
+
+{% block naslov %}
+Dodavanje recepta
+{% endblock %}

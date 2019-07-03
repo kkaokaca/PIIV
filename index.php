@@ -1,6 +1,8 @@
 <?php
 use App\Core\Router;
 use App\Core\Session\Session;
+use App\Core\Controller;
+use App\Controllers\RecipeController;
 
 require_once 'vendor/autoload.php';
 require_once 'Configuration.php';
@@ -65,6 +67,7 @@ $twig = new Twig_Environment($loader, [
 ]);
 
 $data['BASE'] = BASE;
+$data['SESSION'] = $session->getData();
 
 echo $twig->render(
     $foundRoute->getControllerName() . '/' . $foundRoute->getMethodName() . '.html',

@@ -1,13 +1,45 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	background: #b20000;
+	color: rgb(65, 65, 65);
+	font-family:'Times New Roman', Times, serif;
+    /* font-size: 16px; */
+    background-image: url("food4.jpg"); 
+}
+
+
+
 #main-header {
     margin-bottom: 30px;
+
 }
 
 .category-item {
     margin-bottom: 15px;
+    color: #646363;
 }
 
 .category-item .card-body {
     min-height: 120px;
+    background-color: #fdfdd3;
+}
+
+.recipe-item {
+    margin-bottom: 15px;
+    color: #646363;
+}
+
+.recipe-item .card-body {
+    min-height: 120px;
+    background-color: #fdfdd3;
+}
+
+.li.list-group-item{
+    background-color: #fdfdd3;
 }
 
 .social-icons i {
@@ -15,13 +47,13 @@
     padding: 3px;
     display: inline-block;
     margin: 2px 3px;
-    color: #dc0004;
+    color: #7c5bd8;
 }
 
 footer {
     text-align: center;
 }
 
-.auction-item {
+.recipe-item {
     margin-bottom: 10px;
-}
+} 
